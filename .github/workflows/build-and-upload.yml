@@ -1,0 +1,127 @@
+name: Build & Upload to App Store
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: 'App to build'
+        required: true
+        type: choice
+        options:
+          - VoiceMate
+          - MemoEase
+          - Both
+      version:
+        description: 'Version number (e.g. 1.0.0)'
+        required: true
+        type: string
+        default: '1.0.0'
+      build_number:
+        description: 'Build number'
+        required: true
+        type: string
+        default: '1'
+      upload:
+        description: 'Upload to App Store?'
+        required: true
+        type: choice
+        options:
+          - 'yes'
+          - 'no'
+
+jobs:
+  build-voicemate:
+    if: ${{ github.event.inputs.app == 'VoiceMate' || github.event.inputs.app == 'Both' }}
+    name: Build VoiceMate
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Install Fastlane
+        run: gem install fastlane -NV
+
+      - name: Decode App Store Connect API Key
+        run: |
+          mkdir -p ~/.appstoreconnect
+          echo "${{ secrets.APPSTORE_CONNECT_API_KEY }}" | base64 -d > ~/.appstoreconnect/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8
+
+      - name: Build & Sign VoiceMate
+        working-directory: VoiceMate
+        env:
+          APP_VERSION: ${{ github.event.inputs.version }}
+          BUILD_NUMBER: ${{ github.event.inputs.build_number }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          APPSTORE_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+          APPSTORE_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+        run: |
+          fastlane build_app
+
+      - name: Upload to App Store
+        if: ${{ github.event.inputs.upload == 'yes' }}
+        working-directory: VoiceMate
+        env:
+          APP_VERSION: ${{ github.event.inputs.version }}
+          BUILD_NUMBER: ${{ github.event.inputs.build_number }}
+          APPSTORE_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+          APPSTORE_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+        run: |
+          fastlane upload_app
+
+  build-memoease:
+    if: ${{ github.event.inputs.app == 'MemoEase' || github.event.inputs.app == 'Both' }}
+    name: Build MemoEase
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Install Fastlane
+        run: gem install fastlane -NV
+
+      - name: Decode App Store Connect API Key
+        run: |
+          mkdir -p ~/.appstoreconnect
+          echo "${{ secrets.APPSTORE_CONNECT_API_KEY }}" | base64 -d > ~/.appstoreconnect/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8
+
+      - name: Build & Sign MemoEase
+        working-directory: MemoEase
+        env:
+          APP_VERSION: ${{ github.event.inputs.version }}
+          BUILD_NUMBER: ${{ github.event.inputs.build_number }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          APPSTORE_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+          APPSTORE_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+        run: |
+          fastlane build_app
+
+      - name: Upload to App Store
+        if: ${{ github.event.inputs.upload == 'yes' }}
+        working-directory: MemoEase
+        env:
+          APP_VERSION: ${{ github.event.inputs.version }}
+          BUILD_NUMBER: ${{ github.event.inputs.build_number }}
+          APPSTORE_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+          APPSTORE_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+        run: |
+          fastlane upload_app

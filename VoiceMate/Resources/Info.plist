@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- VoiceMate (上班族版) Info.plist -->
+	<key>CFBundleName</key>
+	<string>VoiceMate</string>
+	<key>CFBundleDisplayName</key>
+	<string>VoiceMate - AI Voice Scheduler</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.voicemate</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>microphone</string>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	
+	<!-- Privacy Descriptions (CRITICAL for App Review) -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>VoiceMate needs microphone access to convert your voice into calendar events and reminders.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>VoiceMate uses speech recognition to transcribe your voice into text and create scheduled events automatically.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>VoiceMate adds your spoken events directly to your calendar so you never miss a meeting.</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>VoiceMate creates reminders from your voice notes to help you stay on top of tasks.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>VoiceMate can read text from photos to create calendar events and reminders automatically.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>VoiceMate can scan documents with your camera to extract action items and create calendar events.</string>
+	
+	<!-- Background Modes -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
+	
+	<!-- Supported Languages -->
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>zh-Hans</string>
+		<string>zh-Hant</string>
+		<string>ja</string>
+		<string>ko</string>
+		<string>es</string>
+		<string>fr</string>
+		<string>de</string>
+		<string>pt-BR</string>
+		<string>it</string>
+		<string>ru</string>
+		<string>ar</string>
+		<string>hi</string>
+		<string>th</string>
+		<string>vi</string>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- MemoEase (中老年版) Info.plist -->
+	<key>CFBundleName</key>
+	<string>MemoEase</string>
+	<key>CFBundleDisplayName</key>
+	<string>MemoEase - Voice Reminder</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.memoease</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>microphone</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	
+	<!-- Large text accessibility -->
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	
+	<!-- Privacy Descriptions (elderly-friendly wording) -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>MemoEase uses the microphone to listen when you tap the big blue button, so you can set reminders by speaking.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>MemoEase turns your spoken words into reminders and pill alerts. Your voice data stays on your iPhone.</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>MemoEase sets up reminders for you automatically — for pills, appointments, and daily tasks.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>MemoEase can add your appointments to the calendar so you can see them alongside your other events.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>MemoEase can read text from photos — take a picture of a note or prescription and we'll create a reminder for you.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>MemoEase can use your camera to capture notes, prescriptions, or documents and turn them into reminders.</string>
+	
+	<!-- Fonts -->
+	<key>UIAppFonts</key>
+	<array>
+		<string>SFProRounded-Regular.otf</string>
+		<string>SFProRounded-Bold.otf</string>
+	</array>
+	
+	<!-- Supported Languages -->
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>zh-Hans</string>
+		<string>zh-Hant</string>
+		<string>ja</string>
+		<string>ko</string>
+		<string>es</string>
+		<string>fr</string>
+		<string>de</string>
+	</array>
+</dict>
+</plist>

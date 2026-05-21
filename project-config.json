@@ -1,0 +1,26 @@
+{
+  "displayVersion": "1.0",
+  "bundleVersion": "1",
+  "systemVersion": "17.0",
+  "deploymentTarget": "17.0",
+  "devices": ["iphone", "ipad", "applewatch"],
+  "capabilities": [
+    "Siri",
+    "SpeechRecognition",
+    "PushNotifications",
+    "BackgroundModes_audio",
+    "InAppPurchase",
+    "CloudKit",
+    "HealthKit",
+    "FamilyControls"
+  ],
+  "supportedLanguages": [
+    "en", "zh-Hans", "zh-Hant", "ja", "ko", "es", "fr", "de", "pt-BR", "it", "ru", "ar", "hi", "th", "vi"
+  ],
+  "appCategory": {
+    "primary": "Productivity",
+    "secondary": "Health & Fitness"
+  },
+  "ageRating": "4+",
+  "copyright": "Copyright © 2026. All rights reserved."
+}
