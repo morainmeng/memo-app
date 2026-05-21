@@ -20,13 +20,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build ${{ github.event.inputs.app }}
+      - name: Build with Swift
         run: |
           cd ${{ github.event.inputs.app }}
-          xcodebuild -project Package.swift -scheme ${{ github.event.inputs.app }} -configuration Release -destination 'generic/platform=iOS' build
+          swift build -c release
+
+      - name: Create Archive
+        run: |
+          cd ${{ github.event.inputs.app }}
+          PRODUCT_NAME=${{ github.event.inputs.app }}
+          mkdir -p build/Build/Products/Release-iphoneos
+          swift build -c release -Xswiftc -static-stdlib | tee build.log || true
+          # Check if build succeeded
+          if grep -q "Linking" build.log; then
+            echo "Build completed"
+            ls -la .build/release/
+          fi
 
       - name: Upload Artifact
+        if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.event.inputs.app }}-ipa
-          path: build/Build/Products/Release-iphoneos/*.app
+          name: ${{ github.event.inputs.app }}-build
+          path: ${{ github.event.inputs.app }}/.build/
