@@ -21,24 +21,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build with Swift
+        working-directory: ${{ github.event.inputs.app }}
         run: |
-          cd ${{ github.event.inputs.app }}
           swift build -c release
 
-      - name: Create Archive
+      - name: List Outputs
         run: |
-          cd ${{ github.event.inputs.app }}
-          PRODUCT_NAME=${{ github.event.inputs.app }}
-          mkdir -p build/Build/Products/Release-iphoneos
-          swift build -c release -Xswiftc -static-stdlib | tee build.log || true
-          # Check if build succeeded
-          if grep -q "Linking" build.log; then
-            echo "Build completed"
-            ls -la .build/release/
-          fi
+          ls -la ${{ github.event.inputs.app }}/.build/
 
       - name: Upload Artifact
-        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: ${{ github.event.inputs.app }}-build
