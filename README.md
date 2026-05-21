@@ -33,7 +33,7 @@ voice-apps/
     ├── Package.swift
     ├── Sources/
     │   ├── MemoEaseApp.swift    ← 简易引擎+健康分类
-    │   ├── Views.swift          ← 超大按钮+照片/链接+推荐
+    │   ├── Views.swift          ← 超大按钮+语音回读
     │   ├── ReferralEngine.swift
     │   └── EmailManager.swift
     └── Resources/
@@ -84,7 +84,7 @@ Interface: SwiftUI | Language: Swift | Minimum: iOS 17.0
 ## 💰 收入预测
 
 | | VoiceMate | MemoEase | 合计 |
-|---|---|---|---|
+|---|---|---|
 | 月下载 | 5K-10K | 3K-8K | 8K-18K |
 | 付费转化 | ~10.7% | ~15% | — |
 | 月收入 | $3.7K-$7.5K | $3.1K-$8.4K | **$6.9K-$15.9K** |
